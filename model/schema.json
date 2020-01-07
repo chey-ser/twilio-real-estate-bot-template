@@ -1,0 +1,575 @@
+{
+    "friendlyName" : "Answer questions about a real estate listing and schedule an open house",
+    "logQueries" : true,
+    "uniqueName" : "RealEstate",
+    "defaults" : {
+        "defaults" : {
+            "assistant_initiation" : "task://greeting",
+            "fallback" : "task://fallback",
+            "collect" : {
+                "validate_on_failure" : "task://collect_fallback"
+            }
+        }
+    },
+    "styleSheet" : {
+        "style_sheet" : {
+            "collect" : {
+                "validate" : {
+                    "on_failure" : {
+                        "repeat_question" : false,
+                        "messages" : [
+                            {
+                                "say" : "I didn't get that. What did you say?"
+                            },
+                            {
+                                "say" : "I still didn't catch that. Please repeat."
+                            },
+                            {
+                                "say" : "Let's try one last time. Say it again please."
+                            }
+                        ]
+                    },
+                    "on_success" : { "say" : "" },
+                    "max_attempts" : 4
+                }
+            },
+            "voice" : {
+                "say_voice" : "Polly.Matthew"
+            }
+        }
+    },
+    "fieldTypes" : [
+        {
+            "uniqueName" : "CUSTOM.numBedrooms",
+            "values" : [
+                {
+                    "language" : "en-US",
+                    "value" : "studio",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "3",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "1",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "4",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "5",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "2",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "7",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "6",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "8",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "9",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "10",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "four",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "one",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "two",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "three",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "six",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "five",
+                    "synonymOf" : null
+                }
+            ]
+        }
+    ],
+    "tasks" : [
+        {
+            "uniqueName" : "get_available_listings",
+            "actions" : {
+                "actions" : [
+                    {
+                        "redirect" : ""
+                    }
+                ]
+            },
+            "fields" : [
+                {
+                    "uniqueName" : "rooms_number",
+                    "fieldType" : "CUSTOM.numBedrooms"
+                }
+            ],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "How many {rooms_number} apartments are still available?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Do you have {rooms_number} apartments for rent?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "What availability do you have of {rooms_number} apartments?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Are any {rooms_number} bedroom apartments available for rent?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "How many {rooms_number} bedroom apartments do you have?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Do you have any {rooms_number} apartments?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "What do you have available?"
+                }
+            ]
+        },
+        {
+            "uniqueName" : "complete_scheduling",
+            "actions" : {
+                "actions" : [
+                    {
+                        "redirect" : ""
+                    }
+                ]
+            },
+            "fields" : [],
+            "samples" : []
+        },
+        {
+            "uniqueName" : "get_pets_policy",
+            "actions" : {
+                "actions" : [
+                    {
+                        "redirect" : ""
+                    }
+                ]
+            },
+            "fields" : [],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "I have a cat. Do you allow cats?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "What is your cat policy?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "How much extra for a pet?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Which dog breeds do you allow?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "What pets do you allow?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Do you allows dogs?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "What is your policy on dogs"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "What is your policy on pets"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Pets policy"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Do you allow cats?"
+                }
+            ]
+        },
+        {
+            "uniqueName" : "get_rent",
+            "actions" : {
+                "actions" : [
+                    {
+                        "redirect" : ""
+                    }
+                ]
+            },
+            "fields" : [],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Do you have a deposit"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Do you have a deposit with the rent?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "What is the rent"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "How much is the rent"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Do you require a deposit"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Monthly rent?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Rent"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Yes can you tell me what the rent is?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "How much is the rent for your apartments?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "What is your rent?"
+                }
+            ]
+        },
+        {
+            "uniqueName" : "schedule_open_house",
+            "actions" : {
+                "actions" : [
+                    {
+                        "redirect" : ""
+                    }
+                ]
+            },
+            "fields" : [
+                {
+                    "uniqueName" : "prospect_last_name",
+                    "fieldType" : "Twilio.LAST_NAME"
+                },
+                {
+                    "uniqueName" : "prospect_first_name",
+                    "fieldType" : "Twilio.FIRST_NAME"
+                }
+            ],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "My name is {prospect_first_name}. I'd like to set up an open house."
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "I want to set up an open house. My name is {prospect_first_name} {prospect_last_name}."
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Can you help me set up an open house for {prospect_first_name} {prospect_last_name}."
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Hi, I'd like to set up an open house for {prospect_first_name} {prospect_last_name}."
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "My name is {prospect_first_name} {prospect_last_name}. I'd like to set up an open house."
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Hi, I'd like to schedule an open house for {prospect_first_name} {prospect_last_name}."
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Hi, I'm {prospect_first_name} {prospect_last_name} calling. I'd like to schedule an open house."
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "When can I come in for a viewing?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "When is the next open house?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Come in for a viewing"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Book a viewing"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Book an open house"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "I want to schedule an open house"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Schedule a viewing"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "I want to come in for a viewing"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "when is the next open house"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Open house"
+                }
+            ]
+        },
+        {
+            "uniqueName" : "greeting",
+            "actions" : {
+                "actions" : [
+                    {
+                        "redirect" : ""
+                    }
+                ]
+            },
+            "fields" : [],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "sup"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "whatsup"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "what do you do"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "what can you do"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hey"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "yo"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "what'us up"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hi there."
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Hello."
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hi!"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hi there"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "heya"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hello"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "good afternoon"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "good morning"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Hi"
+                }
+            ]
+        },
+        {
+            "uniqueName" : "goodbye",
+            "actions" : {
+                "actions" : [
+                    {
+                        "redirect" : ""
+                    }
+                ]
+            },
+            "fields" : [],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "nope"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "good bye"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "that's all"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "bye bye"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "see ya"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "stop"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "stop talking"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "goodnight"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "goodbye"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "cancel"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "go away"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "no thanks"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "no"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "that would be all thanks"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "that would be all"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "no thanks"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "that is all thank you"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "that's all for today"
+                }
+            ]
+        },
+        {
+            "uniqueName" : "fallback",
+            "actions" : {
+                "actions" : [
+                    {
+                        "redirect" : ""
+                    }
+                ]
+            },
+            "fields" : [],
+            "samples" : []
+        },
+        {
+            "uniqueName" : "collect_fallback",
+            "actions" : {
+                "actions" : [
+                    {
+                        "redirect" : ""
+                    }
+                ]
+            },
+            "fields" : [],
+            "samples" : []
+        }
+    ]
+}
